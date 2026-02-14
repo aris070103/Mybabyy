@@ -1,149 +1,487 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Teacher's Day</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<style>
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: transparent;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  overflow-x: hidden;
-  text-align: center;
-  color: #0d47a1;
-  position: relative;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day Greeting</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-.card {
-  background: #fff;
-  padding: 40px;
-  border-radius: 20px;
-  max-width: 700px;
-  width: 90%;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-  animation: fadeIn 1.5s ease-in-out;
-  position: relative;
-  z-index: 10;
-}
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff6b9d, #ff8e9b, #ffc3a0);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
 
-h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.8rem;
-  color: #1565c0;
-  margin-bottom: 15px;
-}
+        /* Floating Hearts Animation */
+        .heart-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
 
-p {
-  font-size: 1.2rem;
-  line-height: 1.7;
-  margin: 10px 0;
-}
+        .floating-heart {
+            position: absolute;
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            animation: float 6s infinite linear;
+        }
 
-.quote {
-  font-style: italic;
-  color: #555;
-  margin-top: 20px;
-  border-left: 4px solid #1565c0;
-  padding-left: 15px;
-}
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
 
-.buttons {
-  margin-top: 25px;
-}
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
 
-button {
-  padding: 12px 20px;
-  margin: 10px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  background: #1565c0;
-  color: white;
-  transition: 0.3s;
-  font-weight: 500;
-}
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: slideInDown 1s ease-out;
+        }
 
-button:hover {
-  background: #1976d2;
-  transform: scale(1.05);
-}
+        .header h1 {
+            font-size: 3.5rem;
+            color: #fff;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
+        }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+        .header p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+        }
 
-/* Tulip floating animation */
-.tulip {
-  position: fixed;
-  bottom: -80px;
-  width: 50px;
-  height: auto;
-  animation: floatUp linear forwards;
-  z-index: 1;
-  opacity: 0.8;
-}
+        /* Card Container */
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
 
-@keyframes floatUp {
-  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-  30% { opacity: 1; }
-  100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
-}
+        /* Greeting Card */
+        .greeting-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideInUp 1s ease-out;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-@media (max-width: 600px) {
-  h1 { font-size: 2rem; }
-  p { font-size: 1rem; }
-  .card { padding: 25px; }
-}
-</style>
+        .greeting-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 50px rgba(0,0,0,0.15);
+        }
+
+        .card-heart {
+            font-size: 4rem;
+            text-align: center;
+            margin-bottom: 20px;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .card-title {
+            font-size: 2rem;
+            color: #ff4757;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .card-message {
+            font-size: 1.1rem;
+            color: #333;
+            line-height: 1.6;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* Interactive Button */
+        .love-button {
+            background: linear-gradient(45deg, #ff6b9d, #ff4757);
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(255, 71, 87, 0.3);
+            font-weight: 600;
+            width: 100%;
+        }
+
+        .love-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(255, 71, 87, 0.4);
+        }
+
+        .love-button:active {
+            transform: translateY(-1px);
+        }
+
+        /* Photo Section */
+        .photo-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .photo-placeholder {
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(45deg, #ffaaa5, #ff8a95);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            box-shadow: 0 15px 30px rgba(255, 138, 149, 0.3);
+        }
+
+        /* Memory Section */
+        .memory-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideInRight 1s ease-out;
+        }
+
+        .memory-item {
+            background: rgba(255, 182, 193, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid #ff4757;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+        }
+
+        /* Animations */
+        @keyframes slideInDown {
+            from { transform: translateY(-100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2.5rem; }
+            .card-container { grid-template-columns: 1fr; }
+            .greeting-card { padding: 30px; }
+            .photo-placeholder { width: 200px; height: 200px; }
+        }
+    </style>
 </head>
 <body>
+    <div class="heart-container" id="heartContainer"></div>
 
-<div class="card">
-  <h1></h1>
-  <p class="quote">
-    💙 Happy Teacher’s Day, Baby! 🌷✨
-  </p>
-</div>
+    <div class="container">
+        <header class="header">
+            <h1>💕 Happy Valentine's Day 💕</h1>
+            <p>To My Beautiful Baby</p>
+        </header>
 
+        <div class="card-container">
+            <div class="greeting-card">
+                <div class="card-heart">💖</div>
+                <h2 class="card-title">My Dearest Love</h2>
+                <p class="card-message">
+                    Every day with you feels like Valentine's Day. You fill my world with joy, 
+                    laughter, and endless love. Thank you for being my everything, my baby, 
+                    my heart, my home.
+                </p>
+                <button class="love-button" onclick="showLoveMessage()">Click for a Special Message 💕</button>
+            </div>
 
-<!-- Background Music -->
-<audio id="bg-music" loop>
-  <source src="https://www.bensound.com/bensound-music/bensound-smile.mp3" type="audio/mp3">
-</audio>
+            <div class="greeting-card">
+                <div class="card-heart">🌹</div>
+                <h2 class="card-title">Reasons I Love You</h2>
+                <div class="card-message">
+                    <p>✨ Your beautiful smile that lights up my day</p>
+                    <p>🌟 The way you make everything better</p>
+                    <p>💫 Your kind and loving heart</p>
+                    <p>🌈 How you make me laugh every single day</p>
+                </div>
+                <button class="love-button" onclick="addReason()">Add Another Reason 💝</button>
+            </div>
+        </div>
 
-<script>
-const music = document.getElementById("bg-music");
+        <div class="card-container">
+            <div class="photo-section">
+                <div class="photo-placeholder">
+                    📸
+                </div>
+                <h3 style="color: #ff4757; margin-bottom: 15px;">Our Beautiful Memories</h3>
+                <p style="color: #666;">This is where our favorite photo would go - 
+                every moment with you is picture perfect!</p>
+            </div>
 
-function playMusic() { music.play(); }
-function stopMusic() { music.pause(); }
+            <div class="memory-section">
+                <h3 style="color: #ff4757; margin-bottom: 20px; text-align: center;">Our Special Moments</h3>
+                <div class="memory-item">
+                    <strong>First "I Love You":</strong> The moment that changed everything ❤️
+                </div>
+                <div class="memory-item">
+                    <strong>Our First Date:</strong> When I knew you were special 🌟
+                </div>
+                <div class="memory-item">
+                    <strong>Every Day Since:</strong> Falling more in love with you 💕
+                </div>
+                <button class="love-button" onclick="addMemory()">Add New Memory 📝</button>
+            </div>
+        </div>
 
-// Automatically create tulips continuously
-function createTulip() {
-  let tulip = document.createElement("img");
-  tulip.classList.add("tulip");
-  tulip.src = "https://img.freepik.com/premium-vector/blue-spring-tulip-flower-watercolor-vector-illustration_225753-2051.jpg";
-  
-  document.body.appendChild(tulip);
+        <footer class="footer">
+            <p>Forever and Always Yours 💕</p>
+            <p style="font-size: 0.9rem; margin-top: 10px;">Made with ❤️ just for you</p>
+        </footer>
+    </div>
 
-  tulip.style.left = Math.random() * 100 + "vw";
-  tulip.style.width = (30 + Math.random() * 30) + "px"; // random size
-  tulip.style.animationDuration = (8 + Math.random() * 5) + "s"; // random speed
-  tulip.style.opacity = Math.random();
+    <script>
+        // Floating hearts animation
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.innerHTML = '💖';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            
+            document.getElementById('heartContainer').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
 
-  setTimeout(() => tulip.remove(), 15000);
-}
+        // Create floating hearts every 2 seconds
+        setInterval(createFloatingHeart, 2000);
 
-// Keep making tulips every 500ms
-setInterval(createTulip, 500);
-</script>
+        // Special love message
+        function showLoveMessage() {
+            const messages = [
+                "You are my sunshine, my moonlight, and all my stars! 🌟",
+                "In a world full of chaos, you are my peace 💕",
+                "Every love song makes sense because of you 🎵",
+                "You're not just my Valentine, you're my always ❤️",
+                "Thank you for choosing to love me every single day 💖"
+            ];
+            
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            
+            // Create popup effect
+            const popup = document.createElement('div');
+            popup.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: linear-gradient(45deg, #ff6b9d, #ff8e9b);
+                color: white;
+                padding: 30px;
+                border-radius: 20px;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+                text-align: center;
+                z-index: 1000;
+                max-width: 400px;
+                animation: slideInUp 0.5s ease-out;
+            `;
+            
+            popup.innerHTML = `
+                <h3 style="margin-bottom: 15px;">💕 Special Message 💕</h3>
+                <p style="font-size: 1.1rem; line-height: 1.5;">${randomMessage}</p>
+                <button onclick="this.parentElement.remove()" 
+                        style="margin-top: 20px; padding: 10px 20px; background: white; 
+                               color: #ff4757; border: none; border-radius: 25px; 
+                               cursor: pointer; font-weight: 600;">Close ❤️</button>
+            `;
+            
+            document.body.appendChild(popup);
+            
+            // Remove popup after 5 seconds
+            setTimeout(() => {
+                if (popup.parentElement) {
+                    popup.remove();
+                }
+            }, 5000);
+        }
 
+        // Add new reason to love
+        function addReason() {
+            const reasons = [
+                "💝 The way you laugh at my silly jokes",
+                "🎈 How you make ordinary moments magical",
+                "🌸 Your gentle touch that melts my heart",
+                "🦋 The butterflies you still give me",
+                "🌅 How beautiful you look in the morning",
+                "🎭 Your amazing sense of humor",
+                "🎨 The way you see beauty everywhere"
+            ];
+            
+            const randomReason = reasons[Math.floor(Math.random() * reasons.length)];
+            const reasonsContainer = document.querySelector('.card-message');
+            
+            const newReason = document.createElement('p');
+            newReason.textContent = randomReason;
+            newReason.style.cssText = `
+                opacity: 0;
+                transform: translateX(-20px);
+                transition: all 0.5s ease;
+                color: #ff4757;
+                font-weight: 500;
+            `;
+            
+            reasonsContainer.appendChild(newReason);
+            
+            // Trigger animation
+            setTimeout(() => {
+                newReason.style.opacity = '1';
+                newReason.style.transform = 'translateX(0)';
+            }, 100);
+        }
+
+        // Add new memory
+        function addMemory() {
+            const memories = [
+                "That time we danced in the rain 🌧️",
+                "Our late-night conversations under the stars ⭐",
+                "The way you surprised me on my birthday 🎂",
+                "Our spontaneous adventure last weekend 🗺️",
+                "When you made me laugh until I cried 😂",
+                "That perfect sunset we watched together 🌅"
+            ];
+            
+            const randomMemory = memories[Math.floor(Math.random() * memories.length)];
+            const memoryContainer = document.querySelector('.memory-section');
+            const addButton = memoryContainer.querySelector('.love-button');
+            
+            const newMemory = document.createElement('div');
+            newMemory.className = 'memory-item';
+            newMemory.innerHTML = `<strong>New Memory:</strong> ${randomMemory}`;
+            newMemory.style.cssText = `
+                opacity: 0;
+                transform: translateY(20px);
+                transition: all 0.5s ease;
+            `;
+            
+            memoryContainer.insertBefore(newMemory, addButton);
+            
+            // Trigger animation
+            setTimeout(() => {
+                newMemory.style.opacity = '1';
+                newMemory.style.transform = 'translateY(0)';
+            }, 100);
+        }
+
+        // Add some sparkle effects on click
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('love-button')) {
+                for (let i = 0; i < 5; i++) {
+                    createSparkle(e.pageX, e.pageY);
+                }
+            }
+        });
+
+        function createSparkle(x, y) {
+            const sparkle = document.createElement('div');
+            sparkle.innerHTML = '✨';
+            sparkle.style.cssText = `
+                position: absolute;
+                left: ${x}px;
+                top: ${y}px;
+                pointer-events: none;
+                z-index: 1000;
+                animation: sparkleAnimation 1s ease-out forwards;
+            `;
+            
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes sparkleAnimation {
+                    0% { transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 1; }
+                    100% { transform: translate(-50%, -50%) scale(1.5) rotate(180deg); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+                style.remove();
+            }, 1000);
+        }
+
+        // Initialize some floating hearts on load
+        for (let i = 0; i < 3; i++) {
+            setTimeout(createFloatingHeart, i * 500);
+        }
+    </script>
 </body>
 </html>
